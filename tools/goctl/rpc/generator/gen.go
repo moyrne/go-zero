@@ -54,6 +54,8 @@ func (g *Generator) Generate(zctx *ZRpcContext) error {
 		return err
 	}
 
+	g.projectPrefix = projectCtx.ProjectPrefix
+
 	p := parser.NewDefaultProtoParser()
 	proto, err := p.Parse(zctx.Src, zctx.Multiple)
 	if err != nil {

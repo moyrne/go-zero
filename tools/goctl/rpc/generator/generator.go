@@ -10,9 +10,10 @@ import (
 
 // Generator defines the environment needs of rpc service generation
 type Generator struct {
-	log     console.Console
-	cfg     *conf.Config
-	verbose bool
+	log           console.Console
+	cfg           *conf.Config
+	verbose       bool
+	projectPrefix string
 }
 
 // NewGenerator returns an instance of Generator

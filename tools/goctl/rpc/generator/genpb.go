@@ -35,6 +35,7 @@ func (g *Generator) setPbDir(ctx DirContext, c *ZRpcContext) error {
 	if err != nil {
 		return err
 	}
+	pbDir = strings.TrimPrefix(pbDir, g.projectPrefix)
 	if len(pbDir) == 0 {
 		return fmt.Errorf("pg.go is not found under %q", c.GoOutput)
 	}
@@ -42,6 +43,7 @@ func (g *Generator) setPbDir(ctx DirContext, c *ZRpcContext) error {
 	if err != nil {
 		return err
 	}
+	grpcDir = strings.TrimPrefix(grpcDir, g.projectPrefix)
 	if len(grpcDir) == 0 {
 		return fmt.Errorf("_grpc.pb.go is not found in %q", c.GrpcOutput)
 	}

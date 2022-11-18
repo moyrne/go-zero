@@ -45,11 +45,6 @@ func projectFromGoMod(workDir string) (*ProjectContext, error) {
 		return nil, err
 	}
 
-	workDir, err := pathx.ReadLink(workDir)
-	if err != nil {
-		return nil, err
-	}
-
 	m, err := getRealModule(workDir, execx.Run)
 	if err != nil {
 		return nil, err
@@ -58,8 +53,15 @@ func projectFromGoMod(workDir string) (*ProjectContext, error) {
 		return nil, err
 	}
 
+	readLinkWorkDir, err := pathx.ReadLink(workDir)
+	if err != nil {
+		return nil, err
+	}
+
 	var ret ProjectContext
-	ret.WorkDir = workDir
+	ret.ProjectPrefix = strings.TrimSuffix(m.Dir, m.Path)
+	ret.CmdDir = strings.TrimPrefix(m.Path, m.Dir)
+	ret.WorkDir = readLinkWorkDir
 	ret.Name = filepath.Base(m.Dir)
 	dir, err := pathx.ReadLink(m.Dir)
 	if err != nil {

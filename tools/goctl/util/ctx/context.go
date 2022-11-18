@@ -20,7 +20,10 @@ type ProjectContext struct {
 	// or else it is the root name of the project, eg: github.com/zeromicro/go-zero、greet
 	Path string
 	// Dir is the path of the project, eg: /Users/keson/goland/go/go-zero、/Users/keson/go/src/greet
-	Dir string
+	Dir    string
+	CmdDir string
+	// Project Path Prefix
+	ProjectPrefix string
 }
 
 // Prepare checks the project which module belongs to,and returns the path and module.
